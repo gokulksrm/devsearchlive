@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<h1>{{project.title}}</h1>
+
+{% for tag in project.tags.all %}
+<span>{{tag}}</span>
+{% endfor %}
+<hr>
+<p>{{project.description}}</p>
+<hr>
+<h4>Reviews:</h4>
+{% for review in project.review_set.all %}
+
+<p>{{review.body}}</p>
+
+{% endfor %}
+
+
+{% endblock content %}
