@@ -14,6 +14,7 @@ class Tag(models.Model):
 class Project(models.Model):
     title=models.CharField(max_length=200)
     description=models.TextField(blank=True, null=True)
+    featured_image= models.ImageField(null=True,blank=True,default="default.jpg")
     demo_link=models.CharField(max_length=1000,blank=True, null=True)
     source_link=models.CharField(max_length=1000,blank=True, null=True)
     tags=models.ManyToManyField(Tag,blank=True)
@@ -24,6 +25,14 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+    @property
+    def imageURL(self):
+        try:
+            img= self.featured_image.url
+        except:
+            img=''
+        return img
+
 class Review(models.Model):
     VOTE_TYPE=(
         ('up','up'),
